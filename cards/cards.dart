@@ -1,10 +1,7 @@
 void main(List<String> args) {
   var deck = new Deck();
 
-  print("here's the cards");
-  deck.cards.forEach((card) => 
-    print("${card.rank} of ${card.suit}")
-  );
+  print(deck);
 }
 
 class Deck {
@@ -22,6 +19,9 @@ class Deck {
     }
   }
   
+  toString() {
+    return cards.toString();
+  }
 }
 
 class Card {
@@ -29,4 +29,8 @@ class Card {
   String rank;
 
   Card(this.rank, this.suit);
+
+  toString() {
+    return "{rank: $rank, suit: $suit}";
+  }
 }
