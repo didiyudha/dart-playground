@@ -1,6 +1,6 @@
 void main(List<String> args) {
   var deck = new Deck();
-
+  deck.shuffle();
   print(deck);
 }
 
@@ -17,6 +17,10 @@ class Deck {
         cards.add(card);
       }
     }
+  }
+
+  shuffle() {
+    cards.shuffle();
   }
   
   toString() {
