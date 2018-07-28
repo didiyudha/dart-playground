@@ -17,7 +17,7 @@ class Deck {
     for (var suit in suits) {
       for(var rank in ranks) {
         var card = new Card(rank, suit);
-        this.cards.add(card);
+        cards.add(card);
       }
     }
   }
