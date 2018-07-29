@@ -47,6 +47,6 @@ class Card {
   Card(this.rank, this.suit);
 
   toString() {
-    return "{rank: $rank, suit: $suit}";
+    return "{ rank: $rank, suit: $suit }";
   }
 }
