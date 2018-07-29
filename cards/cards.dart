@@ -1,11 +1,9 @@
 void main(List<String> args) {
   var deck = new Deck();
-  deck.shuffle();
 
-  // print(deck);
-
-  var spadesCards = deck.cardsWithSuit('Spades');
-  print(spadesCards);
+  print(deck);
+  print(deck.deal(5));
+  print(deck);
 }
 
 class Deck {
@@ -29,6 +27,12 @@ class Deck {
 
   cardsWithSuit(String suit) {
     return cards.where((card) => card.suit == suit);  
+  }
+
+  deal(int handSize) {
+    var hand = cards.sublist(0, handSize);
+    cards = cards.sublist(handSize);
+    return hand;
   }
   
   toString() {
