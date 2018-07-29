@@ -1,55 +1,62 @@
-void main(List<String> args) {
+main(List<String> args) {
   var deck = new Deck();
+  print(deck.toString());
 
-  print(deck);
-  print(deck.deal(5));
-  print(deck);
+  deck.suffle();
+  print(deck.toString());
 
-  deck.removeCard("Spades", "Ace");
-  print(deck);
+  var filterd = deck.cardsWithSuit(rank: "Ace", suit: "Diamonds");
+  print(filterd.toString());
+
+  var hand = deck.deal(5);
+  print(hand.toString());
+  print(deck.toString());
+
+  deck.removeCard(rank: 'Three', suit: 'Diamonds');
+  print(deck.toString());
 }
 
 class Deck {
-  List<Card> cards = [];
+List<Card> cards = [];
 
-  Deck() {
-    var ranks = ['Ace', 'Two', 'Three', 'Four', 'Five'];
-    var suits = ['Diamonds', 'Hearts', 'Clubs', 'Spades'];
+Deck() {
+  var ranks = ['Ace', 'Two', 'Three', 'Four', 'Five'];
+  var suits = ['Diamonds', 'Hearts', 'Clubs', 'Spades'];
 
-    for (var suit in suits) {
-      for(var rank in ranks) {
-        var card = new Card(suit: suit, rank: rank);
+  for(var rank in ranks) {
+      for (var suit in suits) {
+        var card = new Card(rank: rank, suit: suit);
         cards.add(card);
       }
     }
   }
 
-  shuffle() {
+  suffle() {
     cards.shuffle();
   }
 
-  cardsWithSuit(String suit) {
-    return cards.where((card) => (card.suit == suit));  
+  cardsWithSuit({String rank, String suit}) {
+    return cards.where((card) => (card.rank == rank) && (card.suit == suit));
   }
 
-  deal(int handSize) {
-    var hand = cards.sublist(0, handSize);
-    cards = cards.sublist(handSize);
+  deal(int handsize) {
+    var hand = cards.sublist(0, handsize);
+    cards = cards.sublist(handsize);
     return hand;
   }
 
-  removeCard(String suit, String rank) {
+  removeCard({String suit, String rank}) {
     cards.removeWhere((card) => (card.suit == suit) && (card.rank == rank));
   }
-  
-  toString() {
+
+  toString(){
     return cards.toString();
   }
 }
 
 class Card {
-  String suit;
   String rank;
+  String suit;
 
   Card({this.rank, this.suit});
 
